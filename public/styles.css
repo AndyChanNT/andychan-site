@@ -10,16 +10,15 @@
   --max-width: 60rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #12161c;
-    --bg-alt: #1a2028;
-    --text: #e6e9ee;
-    --muted: #9aa5b4;
-    --border: #2c343f;
-    --accent: #7fb0ff;
-    --accent-text: #0d1117;
-  }
+body.dark {
+  --bg: #12161c;
+  --bg-alt: #1a2028;
+  --text: #e6e9ee;
+  --muted: #9aa5b4;
+  --border: #2c343f;
+  --accent: #7fb0ff;
+  --accent-text: #0d1117;
+  color-scheme: dark;
 }
 
 *,
@@ -145,6 +144,38 @@ a:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 0 1.1rem;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  min-height: 2.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Small screens: brand and toggle share the first row, links wrap below. */
+@media (max-width: 40rem) {
+  .nav-links {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .nav-links a {

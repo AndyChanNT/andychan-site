@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <script>
+    // Apply the theme before first paint: the session choice wins, otherwise follow the OS setting.
+    (function () {
+      var theme = null;
+      try { theme = sessionStorage.getItem('theme'); } catch (e) {}
+      if (theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add('dark');
+      }
+    })();
+  </script>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -20,6 +30,7 @@
         <li><a href="#repos">Repos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
     </nav>
   </header>
 
