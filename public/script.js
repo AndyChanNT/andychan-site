@@ -12,6 +12,28 @@
     year.textContent = new Date().getFullYear();
   }
 
+  var THEME_KEY = 'theme';
+  var themeToggle = document.getElementById('theme-toggle');
+
+  function syncThemeToggle() {
+    var isDark = document.body.classList.contains('dark');
+    themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+  }
+
+  if (themeToggle) {
+    syncThemeToggle();
+    themeToggle.addEventListener('click', function () {
+      var isDark = document.body.classList.toggle('dark');
+      try {
+        sessionStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+      } catch (e) {
+        // Storage unavailable: the toggle still works for this page view.
+      }
+      syncThemeToggle();
+    });
+  }
+
   function showStatus(message) {
     status.textContent = message;
     status.hidden = false;
